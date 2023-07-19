@@ -1,15 +1,24 @@
-import React, { useState, useContext } from "react";
-import Squares from "./Squares";
-import ContextGameProvider, { ContextGame } from "../ContextGame/Context";
+import React, { useContext, useEffect, useState } from "react";
 
-function Board() {
-  const [squares] = useContext(ContextGame)
+import { ContextGame } from "../ContextGame/Context";
+
+import '../App.css'
+import Square from "../component/Squares";
+
+export default function Board() {
+  const { squares, setWhoIsWinner, setLine, whoIsWinner } =
+    useContext(ContextGame);
+  const [isOver, setIsOver] = useState(false);
+
+
+
   return (
-      <div>
+    <div className="board-container">
+      <div className="board">
         {squares.map((value, index) => (
-          <Squares value={value} index={index} />
+          <Square value={value} index={index} />
         ))}
       </div>
+    </div>
   );
 }
-export default Board;

@@ -1,25 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
-import {ContextGame} from '../ContextGame/Context'
+import { ContextGame } from "../ContextGame/Context"; 
 
-function Squares({value, index}){
-  const [squares, setSquares, isXNext, setIsXNext] = useContext(ContextGame)
+export default function Square({ value, index }) {
+  const { squares, setSquares, isXNext, setIsXNext, whoIsWinner, line } = useContext(ContextGame);
 
-  function handlebutton(){
-    if(squares[index]) return;
-    const newsquare = [...squares]
-    newsquare[index] = isXNext ? "X" : "O"
-    setSquares(newsquare);
+  function handleClick() {
+    if (whoIsWinner) return; // we check if there is an winner
+    if (squares[index]) return; // we check if an specific square are filled
+    const newSquares = [...squares]; // if there is an empty square we create a new one
+    newSquares[index] = isXNext ? "X" : "O";
+    setSquares(newSquares);
     setIsXNext(!isXNext);
   }
 
   return (
-    <div>
-        <button onClick={handlebutton}>
-         {value}
-        </button>
-    </div>
-
-  )
+    <button type="button" onClick={handleClick}> {value} </button>
+  );
 }
-export default Squares;
