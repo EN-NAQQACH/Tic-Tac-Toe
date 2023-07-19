@@ -1,6 +1,7 @@
 .board-container {
   max-width: 500px;
-  margin   : 0 auto;
+  margin   : 50px auto;
+  max-height: 100vh;
 }
 
 .board-container h1 {
